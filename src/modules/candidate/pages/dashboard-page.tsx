@@ -1,14 +1,8 @@
-import DashboardStatCard from "@/modules/candidate/components/dashboard-stat-card";
-import { useCandidateDashboard } from "@/modules/candidate/hooks/use-candidate-dashboard";
+import { useJobseekerMetrics } from "@/modules/candidate/hooks/use-account";
 
 export default function DashboardPage() {
   const { data, isLoading } =
-    useCandidateDashboard();
-
-  const profile =
-    data?.user ||
-    data?.profile ||
-    data;
+    useJobseekerMetrics();
 
   if (isLoading) {
     return (
@@ -20,45 +14,63 @@ export default function DashboardPage() {
 
   return (
     <div className="p-8 space-y-8">
-      {/* Welcome */}
       <div className="bg-white border rounded-2xl p-8">
-        <h1 className="text-3xl font-bold">
-          Welcome back,
-          {" "}
-          {profile?.fullName || "User"}
+        <h1 className="text-4xl font-bold">
+          Welcome back,{" "}
+          {data?.name ||
+            "User"}
         </h1>
 
-        <p className="mt-3 text-slate-600">
-          Manage your job applications and profile.
+        <p className="text-slate-500 mt-4">
+          Manage your job
+          applications and
+          profile.
         </p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <DashboardStatCard
-          title="Applied Jobs"
-          value={0}
-        />
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="bg-white border rounded-2xl p-8">
+          <div className="text-slate-500">
+            Applied Jobs
+          </div>
 
-        <DashboardStatCard
-          title="Saved Jobs"
-          value={0}
-        />
+          <div className="text-5xl font-bold mt-4">
+            {data?.appliedJobCount ||
+              0}
+          </div>
+        </div>
 
-        <DashboardStatCard
-          title="Interviews"
-          value={0}
-        />
+        <div className="bg-white border rounded-2xl p-8">
+          <div className="text-slate-500">
+            Saved Jobs
+          </div>
+
+          <div className="text-5xl font-bold mt-4">
+            {data?.savedJobCount ||
+              0}
+          </div>
+        </div>
+
+        <div className="bg-white border rounded-2xl p-8">
+          <div className="text-slate-500">
+            Job Alerts
+          </div>
+
+          <div className="text-5xl font-bold mt-4">
+            {data?.jobAlertCount ||
+              0}
+          </div>
+        </div>
       </div>
 
-      {/* Activity */}
       <div className="bg-white border rounded-2xl p-8">
-        <h2 className="text-2xl font-semibold">
+        <h2 className="text-3xl font-bold">
           Recent Activity
         </h2>
 
-        <p className="mt-4 text-slate-500">
-          Activity module coming next.
+        <p className="text-slate-500 mt-4">
+          Metrics connected
+          successfully.
         </p>
       </div>
     </div>

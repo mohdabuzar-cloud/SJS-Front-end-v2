@@ -37,3 +37,12 @@ export async function fetchAvailablePlans() {
 
   return response.data;
 }
+
+export async function fetchJobseekerMetrics() {
+  const response =
+    await apiClient.get(
+      "/api/jobseeker/metrics"
+    );
+
+  return response.data;
+}

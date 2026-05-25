@@ -5,6 +5,7 @@ import {
   fetchActivePlan,
   fetchPlanHistory,
   fetchAvailablePlans,
+  fetchJobseekerMetrics,
 } from "@/services/api/account";
 
 export function useWalletAllotments(
@@ -50,5 +51,15 @@ export function useAvailablePlans() {
     ],
     queryFn:
       fetchAvailablePlans,
+  });
+}
+
+export function useJobseekerMetrics() {
+  return useQuery({
+    queryKey: [
+      "jobseeker-metrics",
+    ],
+    queryFn:
+      fetchJobseekerMetrics,
   });
 }
