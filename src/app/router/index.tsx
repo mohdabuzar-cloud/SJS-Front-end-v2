@@ -8,6 +8,7 @@ import ProtectedRoute from "@/app/guards/protected-route";
 
 import PublicLayout from "@/app/layouts/public-layout";
 import CandidateLayout from "@/app/layouts/candidate-layout";
+import EmployerLayout from "@/app/layouts/employer-layout";
 
 import LoginPage from "@/modules/auth/pages/login-page";
 
@@ -27,10 +28,20 @@ import MessagesPage from "@/modules/candidate/pages/messages-page";
 import ProfilePage from "@/modules/candidate/pages/profile-page";
 import SettingsPage from "@/modules/candidate/pages/settings-page";
 import AccountPage from "@/modules/candidate/pages/account-page";
-
 import AiCvBuilderPage from "@/modules/candidate/pages/ai-cv-builder-page";
 import AiCvReviewPage from "@/modules/candidate/pages/ai-cv-review-page";
 import AiCvTemplatesPage from "@/modules/candidate/pages/ai-cv-templates-page";
+
+import EmployerDashboardPage from "@/modules/employer/pages/employer-dashboard-page";
+import EmployerJobsPage from "@/modules/employer/pages/employer-jobs-page";
+import EmployerPostJobPage from "@/modules/employer/pages/employer-post-job-page";
+import EmployerApplicantsPage from "@/modules/employer/pages/employer-applicants-page";
+import EmployerProfilePage from "@/modules/employer/pages/employer-profile-page";
+import EmployerSubscriptionsPage from "@/modules/employer/pages/employer-subscriptions-page";
+import EmployerCandidatePoolPage from "@/modules/employer/pages/employer-candidate-pool-page";
+import EmployerTestimonialsPage from "@/modules/employer/pages/employer-testimonials-page";
+import EmployerInterviewsPage from "@/modules/employer/pages/employer-interviews-page";
+import EmployerAccountPage from "@/modules/employer/pages/employer-account-page";
 
 export default function AppRouter() {
   return (
@@ -41,27 +52,22 @@ export default function AppRouter() {
             path="/"
             element={<HomePage />}
           />
-
           <Route
             path="/jobs"
             element={<PublicJobsPage />}
           />
-
           <Route
             path="/jobs/:id"
             element={<JobDetailsPage />}
           />
-
           <Route
             path="/employers"
             element={<EmployersPage />}
           />
-
           <Route
             path="/candidates"
             element={<CandidatesPage />}
           />
-
           <Route
             path="/pricing"
             element={<PricingPage />}
@@ -85,72 +91,127 @@ export default function AppRouter() {
             path="dashboard"
             element={<DashboardPage />}
           />
-
           <Route
             path="jobs"
             element={<JobsPage />}
           />
-
           <Route
             path="applied-jobs"
-            element={
-              <AppliedJobsPage />
-            }
+            element={<AppliedJobsPage />}
           />
-
           <Route
             path="saved-jobs"
-            element={
-              <SavedJobsPage />
-            }
+            element={<SavedJobsPage />}
           />
-
           <Route
             path="notifications"
-            element={
-              <NotificationsPage />
-            }
+            element={<NotificationsPage />}
           />
-
           <Route
             path="settings"
             element={<SettingsPage />}
           />
-
           <Route
             path="account"
             element={<AccountPage />}
           />
-
           <Route
             path="ai-cv"
-            element={
-              <AiCvBuilderPage />
-            }
+            element={<AiCvBuilderPage />}
           />
-
           <Route
             path="ai-cv/review"
-            element={
-              <AiCvReviewPage />
-            }
+            element={<AiCvReviewPage />}
           />
-
           <Route
             path="ai-cv/templates"
-            element={
-              <AiCvTemplatesPage />
-            }
+            element={<AiCvTemplatesPage />}
           />
-
           <Route
             path="messages"
             element={<MessagesPage />}
           />
-
           <Route
             path="profile"
             element={<ProfilePage />}
+          />
+        </Route>
+
+        <Route
+          path="/employer"
+          element={
+            <ProtectedRoute>
+              <EmployerLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path="dashboard"
+            element={
+              <EmployerDashboardPage />
+            }
+          />
+
+          <Route
+            path="jobs"
+            element={
+              <EmployerJobsPage />
+            }
+          />
+
+          <Route
+            path="post-job"
+            element={
+              <EmployerPostJobPage />
+            }
+          />
+
+          <Route
+            path="applicants"
+            element={
+              <EmployerApplicantsPage />
+            }
+          />
+
+          <Route
+            path="candidate-pool"
+            element={
+              <EmployerCandidatePoolPage />
+            }
+          />
+
+          <Route
+            path="interviews"
+            element={
+              <EmployerInterviewsPage />
+            }
+          />
+
+          <Route
+            path="testimonials"
+            element={
+              <EmployerTestimonialsPage />
+            }
+          />
+
+          <Route
+            path="profile"
+            element={
+              <EmployerProfilePage />
+            }
+          />
+
+          <Route
+            path="subscriptions"
+            element={
+              <EmployerSubscriptionsPage />
+            }
+          />
+          <Route
+           path="account"
+            element={
+              <EmployerAccountPage />
+            }
           />
         </Route>
       </Routes>
